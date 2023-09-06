@@ -1,0 +1,4 @@
+.banner {
+  margin-top: calc(var(--marginTop) * -1);
+  background: red;
+}
