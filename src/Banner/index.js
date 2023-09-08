@@ -57,6 +57,7 @@ class Banner extends Component {
           <IconCheckMarkSolid size="small" inline={false} />
         </View>
         <div className={styles.banner}>
+          <span className={styles.textStyle}>text styled by InstUI v7 theming</span>
           <View
             maxWidth="40rem"
             margin="0 auto"
@@ -67,8 +68,9 @@ class Banner extends Component {
             shadow="above"
           >
             <Panda />
-            <Heading level="h1" margin="none none small">InstUI v7 and V8 frankenstein!</Heading>
-            <Text size="large">Just edit <Text weight="bold" size="large">App.js</Text> to start building with Instructure UI.</Text>
+            <Heading level="h1" margin="none none small">InstUI v7 and V8 frankenstein</Heading>
+            <Text size="large">text size = large <Text weight="bold" size="large">bold</Text></Text>
+            <br/>
             <Button>This is an InstUI v8 button</Button>
             <DateTimeInput
               description="dsc"

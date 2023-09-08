@@ -26,12 +26,37 @@ import React from 'react'
 import Banner from './Banner'
 
 import '@instructure/canvas-theme'
-import { instructure, InstUISettingsProvider } from '@instructure/ui'
+import { instructure } from '@instructure/ui'
+import {ThemeRegistry as ThemeRegistryV7 } from '@instructure/ui-themeable'
+import {ThemeRegistry as ThemeRegistryV8 } from '@instructure/theme-registry'
 
+instructure.use({
+  overrides: {
+    typography: {
+      fontSizeLarge: "5.555rem"
+    }
+  }
+})
+// this is only needed if one overrides a theme
+const overriddenTheme = ThemeRegistryV8.getCurrentTheme()
+const proxiedTheme = new Proxy(overriddenTheme, {
+  get(target, property) {
+    const { key, description, use, ...variables } = target
+    // this is needed for backwards compatible reasons,
+    // themes used to have a 'variables' property on it that we deleted in v8 but is actually needed for canvas
+    if (property === 'variables') {
+      return variables
+    }
+    return Reflect.get(target, property)
+  }
+})
+// register a V8 theme to Instui v7
+ThemeRegistryV7.registerTheme(proxiedTheme)
+// this is enough if the theme is not overridden
+//ThemeRegistryV7.registerTheme(instructure)
+
+console.log("registered themes", ThemeRegistryV7.getRegisteredThemes())
+debugger
 const App = () =>
-  <InstUISettingsProvider theme={instructure}>
     <Banner />
-  </InstUISettingsProvider>
-
-
 export default App

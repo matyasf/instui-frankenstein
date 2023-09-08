@@ -22,6 +22,9 @@
  * SOFTWARE.
  */
 
-export default ({ spacing }) => ({
-  marginTop: spacing.large
-})
+export default ({ spacing, typography }) => {
+  return {
+    marginTop: spacing.small,
+    textSize: typography.fontSizeLarge
+  }
+}

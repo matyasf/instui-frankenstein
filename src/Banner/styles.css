@@ -1,4 +1,9 @@
 .banner {
-  margin-top: calc(var(--marginTop) * -1);
+  margin-top: calc(var(--marginTop));
   background: red;
+
+}
+
+.textStyle {
+  font-size: var(--textSize);
 }
